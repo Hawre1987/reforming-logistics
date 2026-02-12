@@ -56,12 +56,13 @@ class LoadingUnloadingDispatch(Document):
         self.normal_weight_in_meters = (product_net_weight / 1000) / density if density != 0 else 0
 
     def autoname(self):
+        current_year = datetime.now().strftime('%Y')
         if self.transaction_type == 'IN':
-            self.name = f"IN-{self.wb_id}-{self.loading_location}"
+            self.name = f"IN-{self.wb_id}-{current_year}-{self.loading_location}"
         elif self.transaction_type == 'OUT':
-            self.name = f"OUT-{self.wb_id}-{self.unloading_location}"
+            self.name = f"OUT-{self.wb_id}-{current_year}-{self.unloading_location}"
         elif self.transaction_type == 'TRANSFER':
-            self.name = f"Transfer-{self.wb_id}-{self.loading_location}-{self.unloading_location}"
+            self.name = f"Transfer-{self.wb_id}-{current_year}-{self.loading_location}-{self.unloading_location}"
         else:
             frappe.throw('Invalid transaction type selected.')
 
