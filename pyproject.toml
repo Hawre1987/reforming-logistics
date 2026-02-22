@@ -24,8 +24,12 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.dynamic]
 version = {attr = "oil_gas_logistics.__version__"}
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.packages.find]
 include = ["oil_gas_logistics*"]
+exclude = ["*.pyc"]
 
 [tool.bench.app]
 url = "https://github.com/Hawre1987/reforming-logistics"

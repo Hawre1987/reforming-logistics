@@ -4,7 +4,9 @@ with open("requirements.txt") as f:
 	install_requires = f.read().strip().split("\n")
 
 # get version from __version__ variable in oil_gas_logistics/__init__.py
-from oil_gas_logistics import __version__ as version
+import re
+with open("oil_gas_logistics/__init__.py") as f:
+	version = re.search(r'__version__\s*=\s*[\'"]([^\'"]+)[\'"]', f.read()).group(1)
 
 setup(
 	name="oil_gas_logistics",
