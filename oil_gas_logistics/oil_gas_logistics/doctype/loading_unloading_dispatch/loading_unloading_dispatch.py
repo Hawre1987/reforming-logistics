@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import now_datetime
 
 class LoadingUnloadingDispatch(Document):
 
@@ -56,7 +57,7 @@ class LoadingUnloadingDispatch(Document):
         self.normal_weight_in_meters = (product_net_weight / 1000) / density if density != 0 else 0
 
     def autoname(self):
-        current_year = datetime.now().strftime('%Y')
+        current_year = now_datetime().strftime('%Y')
         if self.transaction_type == 'IN':
             self.name = f"IN-{self.wb_id}-{current_year}-{self.loading_location}"
         elif self.transaction_type == 'OUT':
